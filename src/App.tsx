@@ -1,31 +1,23 @@
-import { useState } from 'react';
-import './App.scss';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import { Typography } from '@mui/material';
+import { FC } from 'react';
+import { LiveVideoPlayer } from './components/LiveVideoPlayer/LiveVideoPlayer.tsx';
 
-function App() {
-  const [count, setCount] = useState(0);
+const testVideoUrl = 'https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_5MB.mp4';
 
+const App: FC = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo inline" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react inline" alt="React logo" />
-        </a>
-      </div>
-      <h1 className="my-[0.5em] font-bold">Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p className="my-[1em]">
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <div className="flex min-h-screen flex-col items-center gap-4 bg-slate-100 p-4">
+      <Typography variant="h5" className="uppercase">
+        Live Stream Player
+      </Typography>
+      <LiveVideoPlayer
+        videoProps={{
+          src: testVideoUrl,
+        }}
+        className="aspect-video w-full max-w-4xl"
+      ></LiveVideoPlayer>
+    </div>
   );
-}
+};
 
-export default App;
+export { App };

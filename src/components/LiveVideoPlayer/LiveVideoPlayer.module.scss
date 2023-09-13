@@ -1,0 +1,19 @@
+.hideTimeline {
+  // for video tag
+  &::-webkit-media-controls-timeline {
+    pointer-events: none;
+    display: none;
+  }
+}
+
+.controlShadow {
+  @apply h-full w-full;
+  @apply absolute bottom-0 left-0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.controlBar {
+  @apply w-full p-2;
+  @apply absolute bottom-0 left-0;
+  @apply flex justify-between;
+}

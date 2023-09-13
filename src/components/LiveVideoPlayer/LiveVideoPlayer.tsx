@@ -55,6 +55,26 @@ const LiveVideoPlayer: FC<{
     };
   }, []);
 
+  // user gesture effect
+  useEffect(() => {
+    if (!videoRef.current) {
+      return;
+    }
+    const video = videoRef.current;
+    const clickHandler = () => {
+      console.log('video onclick');
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    };
+    video.addEventListener('click', clickHandler);
+    return () => {
+      video.removeEventListener('click', clickHandler);
+    };
+  }, []);
+
   // update time effect
   useEffect(() => {
     console.debug('running update time effect');
@@ -112,9 +132,9 @@ const LiveVideoPlayer: FC<{
           ></video>
         </div>
         {/* video controls overlay */}
-        <div className="absolute bottom-0 left-0 flex h-[6rem] w-full text-white">
+        <div className="absolute bottom-0 left-0 w-full text-white">
           {/* shadow layer */}
-          <div className={styles.controlShadow}></div>
+          <div className={`${styles.controlShadow} pointer-events-none h-[6rem]`}></div>
           {/* button layer */}
           <div className={styles.controlBar}>
             {/* left buttons */}
